@@ -8,7 +8,7 @@ export default function Note(props) {
         <div className='Note'>
             <div>
                 <h3>{noteFolder.name}</h3>
-                <button type='button'>Go back</button>
+                <button type='button'>Back</button>
             </div>
 
             <div>
