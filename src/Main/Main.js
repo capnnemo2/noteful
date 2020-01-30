@@ -17,6 +17,7 @@ export default class Main extends React.Component {
                         </li>
                     )}
                 </ul>
+                <button type='button'>New note</button>
             </div>
         )
     }

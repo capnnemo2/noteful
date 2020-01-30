@@ -5,7 +5,7 @@ import FolderNav from './FolderNav/FolderNav';
 import Header from './Header/Header';
 import Folder from './Folder/Folder';
 import Note from './Note/Note';
-import NotFoundPage from './NotFoundPage/NotFoundPage';
+import NotFound from './NotFound/NotFound';
 import './App.css'
 
 export default class App extends React.Component {
@@ -26,7 +26,7 @@ export default class App extends React.Component {
               <Route exact path='/' component={Main} />
               <Route path='/folder/:folderId' component={Folder} />
               <Route path='/note/:noteId' component={Note} />
-              <Route component={NotFoundPage} />
+              <Route component={NotFound} />
             </Switch>
           </main>
         </div>
