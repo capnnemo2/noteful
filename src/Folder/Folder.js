@@ -1,12 +1,15 @@
 import React from 'react';
+import dummyStore from '../dummyStore';
 
 export default class Folder extends React.Component {
-    // const folder = dummyStore.find(f => f.id === props.match.params.folderId)
 
     render() {
+
+        // const folder = dummyStore.find(f => f.id === this.props.match.params.folderId)
+
         return (
             <div className='Folder'>
-
+                {/* <h2>{folder.name}</h2> */}
             </div>
         )
     }

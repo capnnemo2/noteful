@@ -9,8 +9,8 @@ export default class Main extends React.Component {
             <div className='Main'>
                 <ul>
                     {dummyStore.notes.map(note =>
-                        <li key={note.id} className='Main__link'>
-                            <Link to={`/note/${note.id}`}>
+                        <li key={note.id} className='Main__li'>
+                            <Link to={`/note/${note.id}`} className='Main__link'>
                                 {note.name}
                             </Link>
                             <button type='button'>Delete</button>

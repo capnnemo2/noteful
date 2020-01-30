@@ -9,6 +9,7 @@ export default class Header extends React.Component {
                 <Link to='/' className='Header__link'>
                     <h1>Noteful</h1>
                 </Link>
+                <hr />
                 
             </div>
         )

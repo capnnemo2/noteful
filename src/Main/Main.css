@@ -2,11 +2,15 @@
     list-style-type: none;
 }
 
-.Main__link {
+.Main__li {
     padding: 10px;
-    text-decoration: none;
     border: 1px solid black;
     width: 400px;
     display: flex;
     justify-content: space-between;
+}
+
+.Main__link {
+    text-decoration: none;
+    color: black;
 }

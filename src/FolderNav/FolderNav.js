@@ -16,6 +16,8 @@ export default class FolderNav extends React.Component {
                         </li>
                     )}
                 </ul>
+                {/* this button should actually link to another component that we're not required to build yet*/}
+                <button type='button'>Add folder</button>
             </div>
         )
     }
