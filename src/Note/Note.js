@@ -8,7 +8,7 @@ export default function Note(props) {
         <div className='Note'>
             <div>
                 <h3>{noteFolder.name}</h3>
-                <button type='button'>Back</button>
+                <button type='button' onClick={() => props.history.goBack()}>Back</button>
             </div>
 
             <div>
