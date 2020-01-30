@@ -6,6 +6,7 @@ import Header from './Header/Header';
 import Folder from './Folder/Folder';
 import Note from './Note/Note';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
+import './App.css'
 
 export default class App extends React.Component {
   render() {
@@ -14,17 +15,20 @@ export default class App extends React.Component {
         <header>
           <Header />
         </header>
-        <nav>
-          <FolderNav />
-        </nav>
-        <main>
-          <Switch>
-            <Route exact path='/' component={Main} />
-            <Route path='/folder/:folderId' component={Folder} />
-            <Route path='/note/:noteId' component={Note} />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </main>
+        <div className='wrapper'>
+          <nav>
+            <FolderNav />
+          </nav>
+          <main>
+            <Switch>
+              <Route exact path='/' component={Main} />
+              <Route path='/folder/:folderId' component={Folder} />
+              <Route path='/note/:noteId' component={Note} />
+              <Route component={NotFoundPage} />
+            </Switch>
+          </main>
+        </div>
+        
       </div>
     );
   }

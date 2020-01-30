@@ -1,0 +1,12 @@
+.Main ul {
+    list-style-type: none;
+}
+
+.Main__link {
+    padding: 10px;
+    text-decoration: none;
+    border: 1px solid black;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+}
