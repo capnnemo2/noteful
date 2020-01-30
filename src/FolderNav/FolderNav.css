@@ -1,0 +1,14 @@
+.FolderNav ul {
+    list-style-type: none;
+}
+
+.FolderNav__link {
+    text-decoration: none;
+    border: 1px solid black;
+    color: black;
+    display: inline-block;
+    width: 200px;
+    height: 45px;
+    text-align: center;
+    padding-top: 25px;
+}
