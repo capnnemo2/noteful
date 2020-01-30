@@ -17,7 +17,9 @@ export default class App extends React.Component {
         </header>
         <div className='wrapper'>
           <nav>
-            <FolderNav />
+            {/* Render a component when the path is / or /folder */}
+            <Route exact path='/' component={FolderNav} />
+            <Route path='/folder/:folderId' component={FolderNav} />
           </nav>
           <main>
             <Switch>
