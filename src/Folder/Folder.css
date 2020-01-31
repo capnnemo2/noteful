@@ -1,8 +1,8 @@
-.Main ul {
+.Folder ul {
     list-style-type: none;
 }
 
-.Main__li {
+.Folder li {
     padding: 10px;
     border: 1px solid black;
     width: 400px;
@@ -10,11 +10,7 @@
     justify-content: space-between;
 }
 
-.Main__link {
+.Folder__link {
     text-decoration: none;
     color: black;
-}
-
-.Main button {
-    margin-left: 40px;
 }

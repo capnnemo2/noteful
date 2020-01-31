@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import dummyStore from '../dummyStore';
+import './Folder.css';
 
 export default class Folder extends React.Component {
 
@@ -17,7 +18,7 @@ export default class Folder extends React.Component {
                 <ul>
                     {notes.map(note =>
                         <li key={note.id} className=''>
-                            <Link to={`/note/${note.id}`} className=''>
+                            <Link to={`/note/${note.id}`} className='Folder__link'>
                                 {note.name}
                             </Link>
                             <button type='button'>Delete</button>

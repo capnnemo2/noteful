@@ -1,5 +1,6 @@
 .FolderNav ul {
     list-style-type: none;
+    padding-right: 20px;
 }
 
 .FolderNav__link {
@@ -11,4 +12,9 @@
     height: 45px;
     text-align: center;
     padding-top: 25px;
+    background-color: lightgrey;
+}
+
+.FolderNav button {
+    margin-left: 100px;
 }
