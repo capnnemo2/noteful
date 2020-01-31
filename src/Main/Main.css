@@ -1,11 +1,12 @@
 .Main ul {
     list-style-type: none;
+    width: 100%;
 }
 
 .Main__li {
     padding: 10px;
     border: 1px solid black;
-    width: 400px;
+    /* width: 400px; */
     display: flex;
     justify-content: space-between;
 }

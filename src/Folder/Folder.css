@@ -1,11 +1,11 @@
 .Folder ul {
     list-style-type: none;
+    width: 100%;;
 }
 
 .Folder li {
     padding: 10px;
     border: 1px solid black;
-    width: 400px;
     display: flex;
     justify-content: space-between;
 }
