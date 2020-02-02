@@ -14,6 +14,25 @@ export default class App extends React.Component {
     notes: []
   };
 
+  componentDidMount() {
+    const url = "http://localhost:9090/";
+    fetch(url + "folders")
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(folders => {
+        this.setState({
+          folders
+        });
+      })
+      .catch(error => {
+        console.log({ error });
+      });
+  }
+
   render() {
     return (
       <div className="App">
