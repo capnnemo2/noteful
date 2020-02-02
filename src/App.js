@@ -9,6 +9,11 @@ import NotFound from "./NotFound/NotFound";
 import "./App.css";
 
 export default class App extends React.Component {
+  state = {
+    folders: [],
+    notes: []
+  };
+
   render() {
     return (
       <div className="App">
