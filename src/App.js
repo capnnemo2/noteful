@@ -50,10 +50,17 @@ export default class App extends React.Component {
       });
   }
 
+  handleDeleteNote = noteId => {
+    this.setState({
+      notes: this.state.notes.filter(note => note.id !== noteId)
+    });
+  };
+
   render() {
     const value = {
       notes: this.state.notes,
-      folders: this.state.folders
+      folders: this.state.folders,
+      deleteNote: this.handleDeleteNote
     };
     return (
       <NotefulContext.Provider value={value}>

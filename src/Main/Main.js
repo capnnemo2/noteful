@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import dummyStore from "../dummyStore";
 import NotefulContext from "../NotefulContext";
 import "./Main.css";
 
@@ -20,6 +19,7 @@ export default class Main extends React.Component {
             </li>
           ))}
         </ul>
+        {/* this doesn't have to work yet */}
         <button type="button">New note</button>
       </div>
     );
