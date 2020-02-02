@@ -1,14 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import dummyStore from "../dummyStore";
+import NotefulContext from "../NotefulContext";
 import "./FolderNav.css";
 
 export default class FolderNav extends React.Component {
+  static contextType = NotefulContext;
+
   render() {
+    const { folders = [] } = this.context;
     return (
       <div className="FolderNav">
         <ul>
-          {dummyStore.folders.map(folder => (
+          {folders.map(folder => (
             <li key={folder.id}>
               <NavLink to={`/folder/${folder.id}`} className="FolderNav__link">
                 {folder.name}

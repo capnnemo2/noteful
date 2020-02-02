@@ -51,8 +51,12 @@ export default class App extends React.Component {
   }
 
   render() {
+    const value = {
+      notes: this.state.notes,
+      folders: this.state.folders
+    };
     return (
-      <NotefulContext.Provider>
+      <NotefulContext.Provider value={value}>
         <div className="App">
           <header>
             <Header />
