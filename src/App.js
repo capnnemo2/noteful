@@ -31,6 +31,22 @@ export default class App extends React.Component {
       .catch(error => {
         console.log({ error });
       });
+
+    fetch(url + "notes")
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(notes => {
+        this.setState({
+          notes
+        });
+      })
+      .catch(error => {
+        console.log({ error });
+      });
   }
 
   render() {
