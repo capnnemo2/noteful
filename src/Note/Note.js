@@ -22,20 +22,24 @@ export default class Note extends React.Component {
     // const { noteId } = this.props.match.params;
     // const { folderId } = this.props.match.params;
     const { noteId, folderId } = this.props.match.params;
+
     const note = notes.find(note => note.id === noteId);
     const noteFolder = folders.find(f => f.id === folderId);
+
+    console.log(note);
+    console.log(noteFolder);
     return (
       <div className="Note wrapper">
         <div className="Note__nav">
-          <h3>{noteFolder.name}</h3>
+          {/* <h3>{noteFolder.name}</h3> */}
           <button type="button" onClick={() => this.props.history.goBack()}>
             Back
           </button>
         </div>
 
         <div className="Note__content">
-          <h2>{note.name}</h2>
-          <p>{note.content}</p>
+          {/* <h2>{note.name}</h2>
+          <p>{note.content}</p> */}
           <button type="button">Delete</button>
         </div>
       </div>
