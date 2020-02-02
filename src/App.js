@@ -6,6 +6,7 @@ import Header from "./Header/Header";
 import Folder from "./Folder/Folder";
 import Note from "./Note/Note";
 import NotFound from "./NotFound/NotFound";
+import NotefulContext from "./NotefulContext";
 import "./App.css";
 
 export default class App extends React.Component {
@@ -51,25 +52,27 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <header>
-          <Header />
-        </header>
-        <div className="wrapper">
-          <nav>
-            <Route exact path="/" component={FolderNav} />
-            <Route path="/folder/:folderId" component={FolderNav} />
-          </nav>
-          <main>
-            <Switch>
-              <Route exact path="/" component={Main} />
-              <Route path="/folder/:folderId" component={Folder} />
-              <Route path="/note/:noteId" component={Note} />
-              <Route component={NotFound} />
-            </Switch>
-          </main>
+      <NotefulContext.Provider>
+        <div className="App">
+          <header>
+            <Header />
+          </header>
+          <div className="wrapper">
+            <nav>
+              <Route exact path="/" component={FolderNav} />
+              <Route path="/folder/:folderId" component={FolderNav} />
+            </nav>
+            <main>
+              <Switch>
+                <Route exact path="/" component={Main} />
+                <Route path="/folder/:folderId" component={Folder} />
+                <Route path="/note/:noteId" component={Note} />
+                <Route component={NotFound} />
+              </Switch>
+            </main>
+          </div>
         </div>
-      </div>
+      </NotefulContext.Provider>
     );
   }
 }
