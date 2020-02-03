@@ -3,31 +3,27 @@ import NotefulContext from "../NotefulContext";
 import "./Note.css";
 
 export default class Note extends React.Component {
-  static defaultProps = {
-    history: {
-      goBack: () => {}
-    },
-    match: {
-      params: {}
-    }
-  };
+  // I don't know if I need the default props or not
+  //   static defaultProps = {
+  //     history: {
+  //       goBack: () => {}
+  //     },
+  //     match: {
+  //       params: {}
+  //     }
+  //   };
 
   static contextType = NotefulContext;
   render() {
     // const { notes = [] } = this.context;
     // const { folders = [] } = this.context;
-    const { notes, folders } = this.context;
+    const { notes = [], folders = [] } = this.context;
     // const { noteId } = this.props.match.params;
     // const { folderId } = this.props.match.params;
-    const { noteId, folderId } = this.props.match.params;
+    const { noteId } = this.props.match.params;
 
     const note = notes.find(note => note.id === noteId);
     const noteFolder = folders.find(f => f.id === note.folderId);
-    console.log(this.context.notes);
-    console.log(this.context.folders);
-    console.log(noteId);
-    console.log(note);
-    console.log(note.name);
     return (
       <div className="Note wrapper">
         <div className="Note__nav">
