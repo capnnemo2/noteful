@@ -24,10 +24,10 @@ export default class Note extends React.Component {
     const { noteId, folderId } = this.props.match.params;
 
     const note = notes.find(note => note.id === noteId);
-    const noteFolder = folders.find(f => f.id === note.folderId);
+    // const noteFolder = folders.find(f => f.id === note.folderId);
 
     console.log(note);
-    console.log(noteFolder);
+    // console.log(noteFolder);
     return (
       <div className="Note wrapper">
         <div className="Note__nav">
