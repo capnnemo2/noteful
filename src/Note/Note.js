@@ -12,8 +12,6 @@ export default class Note extends React.Component {
     }
   };
 
-  findNote = (notes = [], noteId) => notes.find(note => note.id === noteId);
-
   static contextType = NotefulContext;
   render() {
     // const { notes = [] } = this.context;
@@ -24,22 +22,24 @@ export default class Note extends React.Component {
     const { noteId, folderId } = this.props.match.params;
 
     const note = notes.find(note => note.id === noteId);
-    // const noteFolder = folders.find(f => f.id === note.folderId);
-
+    const noteFolder = folders.find(f => f.id === note.folderId);
+    console.log(this.context.notes);
+    console.log(this.context.folders);
+    console.log(noteId);
     console.log(note);
-    // console.log(noteFolder);
+    console.log(note.name);
     return (
       <div className="Note wrapper">
         <div className="Note__nav">
-          {/* <h3>{noteFolder.name}</h3> */}
+          <h3>{noteFolder.name}</h3>
           <button type="button" onClick={() => this.props.history.goBack()}>
             Back
           </button>
         </div>
 
         <div className="Note__content">
-          {/* <h2>{note.name}</h2>
-          <p>{note.content}</p> */}
+          <h2>{note.name}</h2>
+          <p>{note.content}</p>
           <button type="button">Delete</button>
         </div>
       </div>
