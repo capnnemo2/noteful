@@ -4,11 +4,13 @@ import NotefulContext from "../NotefulContext";
 import "./Main.css";
 
 export default class Main extends React.Component {
+  static defaultProps = {
+    onDeleteNote: () => {}
+  };
   static contextType = NotefulContext;
 
-  handleDeleteNote = e => {
-    e.preventDefault();
-    const noteId = this.props.id;
+  handleDeleteNote = id => {
+    const noteId = id;
     const url = "http://localhost:9090/notes/";
     console.log(noteId);
     fetch(url + `${noteId}`, {
@@ -40,7 +42,13 @@ export default class Main extends React.Component {
               <Link to={`/note/${note.id}`} className="Main__link">
                 {note.name}
               </Link>
-              <button type="button" onClick={this.handleDeleteNote}>
+              <button
+                type="button"
+                onClick={e => {
+                  e.preventDefault();
+                  this.handleDeleteNote(note.id);
+                }}
+              >
                 Delete
               </button>
             </li>
