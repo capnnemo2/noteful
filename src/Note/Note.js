@@ -14,6 +14,31 @@ export default class Note extends React.Component {
   //   };
 
   static contextType = NotefulContext;
+
+  handleDeleteNote = id => {
+    const noteId = id;
+    const url = "http://localhost:9090/notes/";
+    console.log(noteId);
+    fetch(url + `${noteId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(() => {
+        this.context.deleteNote(noteId);
+      })
+      .catch(error => {
+        console.error({ error });
+      });
+  };
+
   render() {
     // const { notes = [] } = this.context;
     // const { folders = [] } = this.context;
@@ -36,7 +61,15 @@ export default class Note extends React.Component {
         <div className="Note__content">
           <h2>{note.name}</h2>
           <p>{note.content}</p>
-          <button type="button">Delete</button>
+          <button
+            type="button"
+            onClick={e => {
+              e.preventDefault();
+              this.handleDeleteNote(noteId);
+            }}
+          >
+            Delete
+          </button>
         </div>
       </div>
     );
