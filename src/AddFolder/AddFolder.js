@@ -20,13 +20,12 @@ export default class AddFolder extends React.Component {
     const name = this.state.folderName.value.trim();
     if (name.length === 0) {
       return "You must give the folder a name";
-    } else if (!name.match(/[a-z]/)) {
+    } else if (!name.match(/[a-zA-Z]/)) {
       return "Folder name must include at least one letter";
     }
   }
 
   handleSubmit = name => {
-    console.log(name);
     const url = "http://localhost:9090/folders/";
     fetch(url, {
       method: "POST",

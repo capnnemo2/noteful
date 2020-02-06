@@ -37,7 +37,7 @@ export default class AddNote extends React.Component {
     const newNoteName = this.state.noteName.value.trim();
     if (newNoteName.length === 0) {
       return "You must give the note a name";
-    } else if (!newNoteName.match(/[a-z]/)) {
+    } else if (!newNoteName.match(/[a-zA-Z]/)) {
       return "Note name must include at least one letter";
     }
   }
@@ -46,7 +46,7 @@ export default class AddNote extends React.Component {
     const newNoteContent = this.state.noteContent.value;
     if (newNoteContent.length === 0) {
       return "The note must have content";
-    } else if (!newNoteContent.match(/[a-z]/)) {
+    } else if (!newNoteContent.match(/[a-zA-Z]/)) {
       return "Note content must include at least one letter";
     }
   }

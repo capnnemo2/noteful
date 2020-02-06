@@ -85,6 +85,12 @@ export default class App extends React.Component {
     this.setState({ notes: [...this.state.notes, note] });
   }
 
+  componentDidUpdate(prevState) {
+    if (prevState.notes !== this.state.notes) {
+      console.log("the state changed");
+    }
+  }
+
   render() {
     const value = {
       notes: this.state.notes,
