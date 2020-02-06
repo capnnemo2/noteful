@@ -88,6 +88,7 @@ export default class AddNote extends React.Component {
     const { folders = [] } = this.context;
     const nameError = this.validateName();
     const contentError = this.validateContent();
+    const folderError = this.validateFolder();
     return (
       <form
         className="AddNote"
@@ -119,6 +120,9 @@ export default class AddNote extends React.Component {
             </option>
           ))}
         </select>
+        {this.state.folderId.touched && (
+          <ValidationError message={folderError} />
+        )}
         <br />
         <label htmlFor="content">Note content:</label>
         <input
