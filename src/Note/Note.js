@@ -5,37 +5,13 @@ import "./Note.css";
 export default class Note extends React.Component {
   static contextType = NotefulContext;
 
-  handleDeleteNote = id => {
-    const noteId = id;
-    const url = "http://localhost:9090/notes/";
-    console.log(noteId);
-    fetch(url + `${noteId}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json"
-      }
-    })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(res.status);
-        }
-        return res.json();
-      })
-      .then(() => {
-        this.context.deleteNote(noteId);
-      })
-      .catch(error => {
-        console.error({ error });
-      });
-  };
-
   render() {
     const { notes = [], folders = [] } = this.context;
     const { noteId } = this.props.match.params;
 
     const note = notes.find(note => note.id === noteId);
-    const noteFolder = folders.find(f => f.id === note.folderId);
-    return (
+    const noteFolder = note ? folders.find(f => f.id === note.folderId) : {};
+    return note ? (
       <div className="Note wrapper">
         <div className="Note__nav">
           <h3>{noteFolder.name}</h3>
@@ -51,13 +27,17 @@ export default class Note extends React.Component {
             type="button"
             onClick={e => {
               e.preventDefault();
-              this.handleDeleteNote(noteId);
+              this.context.deleteNote(noteId, () =>
+                this.props.history.push("/")
+              );
             }}
           >
             Delete
           </button>
         </div>
       </div>
+    ) : (
+      "Loading Note..."
     );
   }
 }

@@ -52,17 +52,45 @@ export default class App extends React.Component {
       });
   }
 
-  handleDeleteNote = noteId => {
-    this.setState({
-      notes: this.state.notes.filter(note => note.id !== noteId)
-    });
+  handleDeleteNote = (id, cb) => {
+    const noteId = id;
+    const url = "http://localhost:9090/notes/";
+    console.log(noteId);
+    fetch(url + `${noteId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(() => {
+        this.setState(
+          {
+            notes: this.state.notes.filter(note => note.id !== noteId)
+          },
+          cb
+        );
+      })
+      .catch(error => {
+        console.error({ error });
+      });
   };
+
+  addNote(note) {
+    this.setState({ notes: [...this.state.notes, note] });
+  }
 
   render() {
     const value = {
       notes: this.state.notes,
       folders: this.state.folders,
-      deleteNote: this.handleDeleteNote
+      deleteNote: this.handleDeleteNote,
+      addNote: this.addNote
     };
     return (
       <NotefulContext.Provider value={value}>

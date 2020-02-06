@@ -9,29 +9,6 @@ export default class Main extends React.Component {
   };
   static contextType = NotefulContext;
 
-  handleDeleteNote = id => {
-    const noteId = id;
-    const url = "http://localhost:9090/notes/";
-    console.log(noteId);
-    fetch(url + `${noteId}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json"
-      }
-    })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(res.status);
-        }
-        return res.json();
-      })
-      .then(() => {
-        this.context.deleteNote(noteId);
-      })
-      .catch(error => {
-        console.error({ error });
-      });
-  };
   render() {
     const { notes = [] } = this.context;
     return (
@@ -46,7 +23,7 @@ export default class Main extends React.Component {
                 type="button"
                 onClick={e => {
                   e.preventDefault();
-                  this.handleDeleteNote(note.id);
+                  this.context.deleteNote(note.id);
                 }}
               >
                 Delete
