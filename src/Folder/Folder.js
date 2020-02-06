@@ -17,7 +17,6 @@ export default class Folder extends React.Component {
     return folder ? (
       <div className="Folder">
         <h2>{folder.name}</h2>
-
         <ul>
           {notesInFolder.map(note => (
             <li key={note.id} className="Folder__note_link">
