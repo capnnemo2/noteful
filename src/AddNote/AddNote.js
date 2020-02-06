@@ -29,6 +29,26 @@ export default class AddNote extends React.Component {
 
   handleSubmit = name => {
     console.log(name);
+    const url = "http://localhost:9090/notes/";
+    fetch(url, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ name })
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(() => {
+        this.context.addNote(name);
+      })
+      .catch(error => {
+        console.error({ error });
+      });
+
+    this.props.history.push("/");
   };
 
   render() {
