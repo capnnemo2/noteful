@@ -13,13 +13,15 @@ export default class AddFolder extends React.Component {
   }
 
   updateFolderName(name) {
-    this.setState({ folderName: { value: name } });
+    this.setState({ folderName: { value: name, touched: true } });
   }
 
   validateFolderName() {
     const name = this.state.folderName.value.trim();
     if (name.length === 0) {
       return "You must give the folder a name";
+    } else if (!name.match(/[a-z]/)) {
+      return "Folder name must include at least one letter";
     }
   }
 
