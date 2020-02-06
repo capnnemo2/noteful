@@ -19,7 +19,7 @@ export default class AddFolder extends React.Component {
   validateFolderName() {
     const name = this.state.folderName.value.trim();
     if (name.length === 0) {
-      return "You must name the folder";
+      return "You must give the folder a name";
     }
   }
 
