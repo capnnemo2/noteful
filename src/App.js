@@ -6,6 +6,7 @@ import Header from "./Header/Header";
 import Folder from "./Folder/Folder";
 import Note from "./Note/Note";
 import NotFound from "./NotFound/NotFound";
+import AddFolder from "./AddFolder/AddFolder";
 import NotefulContext from "./NotefulContext";
 import "./App.css";
 
@@ -78,6 +79,7 @@ export default class App extends React.Component {
                 <Route exact path="/" component={Main} />
                 <Route path="/folder/:folderId" component={Folder} />
                 <Route path="/note/:noteId" component={Note} />
+                <Route path="/addFolder" component={AddFolder} />
                 <Route component={NotFound} />
               </Switch>
             </main>

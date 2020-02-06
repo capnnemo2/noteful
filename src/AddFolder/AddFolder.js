@@ -12,14 +12,35 @@ export default class AddFolder extends React.Component {
     this.setState({ folderName: { value: name } });
   }
 
-  handleSubmit = e => {
-    e.preventDefault();
-    const { name } = this.state;
+  handleSubmit = name => {
     console.log(name);
+    const url = "http://localhost:9090/folders/";
+    fetch(url, {
+      method: "POST",
+      headers: { "content-type": "application/json" }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(() => {
+        this.context.addFolder(name);
+      })
+      .catch(error => {
+        console.error({ error });
+      });
   };
   render() {
     return (
-      <form className="AddFolder" onSubmit={e => this.handleSubmit(e)}>
+      <form
+        className="AddFolder"
+        onSubmit={e => {
+          e.preventDefault();
+          this.handleSubmit(this.state.folderName.value);
+        }}
+      >
         <input
           type="text"
           name="name"
