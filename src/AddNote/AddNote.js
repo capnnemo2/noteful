@@ -22,11 +22,11 @@ export default class AddNote extends React.Component {
   static contextType = NotefulContext;
 
   updateNoteName(name) {
-    this.setState({ noteName: { value: name } });
+    this.setState({ noteName: { value: name, touched: true } });
   }
 
   updateNoteContent(content) {
-    this.setState({ noteContent: { value: content } });
+    this.setState({ noteContent: { value: content, touched: true } });
   }
 
   updateFolderId(id) {
@@ -37,6 +37,8 @@ export default class AddNote extends React.Component {
     const newNoteName = this.state.noteName.value.trim();
     if (newNoteName.length === 0) {
       return "You must give the note a name";
+    } else if (!newNoteName.match(/[a-z]/)) {
+      return "Note name must include at least one letter";
     }
   }
 
@@ -44,10 +46,18 @@ export default class AddNote extends React.Component {
     const newNoteContent = this.state.noteContent.value;
     if (newNoteContent.length === 0) {
       return "The note must have content";
+    } else if (!newNoteContent.match(/[a-z]/)) {
+      return "Note content must include at least one letter";
     }
   }
 
-  //   need to add folderId, content to POST
+  validateFolder() {
+    const newNoteFolder = this.state.folderId;
+    if (newNoteFolder === "") {
+      return "You must select a folder for your note";
+    }
+  }
+
   handleSubmit = () => {
     const name = this.state.noteName.value;
     const content = this.state.noteContent.value;
@@ -77,6 +87,7 @@ export default class AddNote extends React.Component {
   render() {
     const { folders = [] } = this.context;
     const nameError = this.validateName();
+    const contentError = this.validateContent();
     return (
       <form
         className="AddNote"
@@ -91,14 +102,17 @@ export default class AddNote extends React.Component {
           name="name"
           id="name"
           onChange={e => this.updateNoteName(e.target.value)}
+          required
         />
+        {this.state.noteName.touched && <ValidationError message={nameError} />}
         <br />
         <label htmlFor="folder">Choose a folder:</label>
         <select
           name="folder"
           onChange={e => this.updateFolderId(e.target.value)}
+          required
         >
-          <option>Select Folder...</option>
+          <option value="">Select Folder...</option>
           {folders.map(folder => (
             <option key={folder.id} value={folder.id}>
               {folder.name}
@@ -113,18 +127,23 @@ export default class AddNote extends React.Component {
           id="content"
           size="100"
           onChange={e => this.updateNoteContent(e.target.value)}
+          required
         />
+        {this.state.noteContent.touched && (
+          <ValidationError message={contentError} />
+        )}
         <br />
         <button
           type="submit"
           className="AddNote__btn"
-          disabled={this.validateName() || this.validateContent()}
+          disabled={
+            this.validateName() ||
+            this.validateContent() ||
+            this.validateFolder()
+          }
         >
           Add
         </button>
-        {this.state.noteName.touched && this.state.noteContent.touched && (
-          <ValidationError message={nameError} />
-        )}
       </form>
     );
   }

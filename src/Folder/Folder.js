@@ -4,9 +4,6 @@ import NotefulContext from "../NotefulContext";
 import "./Folder.css";
 
 export default class Folder extends React.Component {
-  static defaultProps = {
-    onDeleteNote: () => {}
-  };
   static contextType = NotefulContext;
 
   render() {
