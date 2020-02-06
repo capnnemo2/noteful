@@ -9,9 +9,23 @@ export default class AddNote extends React.Component {
       folders: []
     };
   }
+
+  updateNoteName(name) {
+    this.setState({ noteName: { value: name } });
+  }
+
   static contextType = NotefulContext;
   render() {
     const { folders = [] } = this.context;
-    return <form className="AddNote"></form>;
+    return (
+      <form className="AddNote">
+        <input
+          type="text"
+          name="name"
+          id="name"
+          onChange={e => this.updateNoteName(e.target.value)}
+        />
+      </form>
+    );
   }
 }

@@ -1,15 +1,26 @@
 import React from "react";
+import ValidationError from "../ValidationError/ValidationError";
 
 export default class AddFolder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      folderName: ""
+      folderName: {
+        value: "",
+        touched: false
+      }
     };
   }
 
   updateFolderName(name) {
     this.setState({ folderName: { value: name } });
+  }
+
+  validateFolderName() {
+    const name = this.state.folderName.value.trim();
+    if (name.length === 0) {
+      return "You must name the folder";
+    }
   }
 
   handleSubmit = name => {
@@ -36,6 +47,7 @@ export default class AddFolder extends React.Component {
     this.props.history.push("/");
   };
   render() {
+    const nameError = this.validateFolderName();
     return (
       <form
         className="AddFolder"
@@ -44,15 +56,23 @@ export default class AddFolder extends React.Component {
           this.handleSubmit(this.state.folderName.value);
         }}
       >
+        <label htmlFor="name">New Folder Name: </label>
         <input
           type="text"
           name="name"
           id="name"
           onChange={e => this.updateFolderName(e.target.value)}
         />
-        <button type="submit" className="AddFolder__btn">
+        <button
+          type="submit"
+          className="AddFolder__btn"
+          disabled={this.validateFolderName()}
+        >
           Add
         </button>
+        {this.state.folderName.touched && (
+          <ValidationError message={nameError} />
+        )}
       </form>
     );
   }
