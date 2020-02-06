@@ -3,16 +3,6 @@ import NotefulContext from "../NotefulContext";
 import "./Note.css";
 
 export default class Note extends React.Component {
-  // I don't know if I need the default props or not
-  //   static defaultProps = {
-  //     history: {
-  //       goBack: () => {}
-  //     },
-  //     match: {
-  //       params: {}
-  //     }
-  //   };
-
   static contextType = NotefulContext;
 
   handleDeleteNote = id => {

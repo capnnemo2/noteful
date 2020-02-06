@@ -17,7 +17,8 @@ export default class AddFolder extends React.Component {
     const url = "http://localhost:9090/folders/";
     fetch(url, {
       method: "POST",
-      headers: { "content-type": "application/json" }
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ name })
     })
       .then(res => {
         if (!res.ok) {
@@ -31,6 +32,8 @@ export default class AddFolder extends React.Component {
       .catch(error => {
         console.error({ error });
       });
+
+    this.props.history.push("/");
   };
   render() {
     return (

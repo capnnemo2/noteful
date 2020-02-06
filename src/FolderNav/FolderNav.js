@@ -24,8 +24,6 @@ export default class FolderNav extends React.Component {
             </NavLink>
           </li>
         </ul>
-        {/* this doesn't have to work yet*/}
-        <button type="button">Add folder</button>
       </div>
     );
   }
