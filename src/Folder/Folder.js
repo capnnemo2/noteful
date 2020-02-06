@@ -23,7 +23,7 @@ export default class Folder extends React.Component {
 
         <ul>
           {notesInFolder.map(note => (
-            <li key={note.id} className="">
+            <li key={note.id} className="Folder__note_link">
               <Link to={`/note/${note.id}`} className="Folder__link">
                 {note.name}
               </Link>
@@ -38,8 +38,12 @@ export default class Folder extends React.Component {
               </button>
             </li>
           ))}
+          <li>
+            <Link to={"/addNote"} className="Main__addNote">
+              Add Note
+            </Link>
+          </li>
         </ul>
-        <button type="button">New note</button>
       </div>
     ) : (
       "Loading Folder & Notes..."

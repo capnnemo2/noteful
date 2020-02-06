@@ -118,7 +118,7 @@ export default class AddNote extends React.Component {
         <button
           type="submit"
           className="AddNote__btn"
-          //   disabled={this.validateName() || this.validateContent()}
+          disabled={this.validateName() || this.validateContent()}
         >
           Add
         </button>

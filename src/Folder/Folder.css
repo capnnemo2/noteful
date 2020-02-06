@@ -1,16 +1,16 @@
 .Folder ul {
-    list-style-type: none;
-    width: 100%;;
+  list-style-type: none;
+  width: 100%;
 }
 
-.Folder li {
-    padding: 10px;
-    border: 1px solid black;
-    display: flex;
-    justify-content: space-between;
+.Folder__note_link {
+  padding: 10px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
 }
 
 .Folder__link {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
