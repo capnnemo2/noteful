@@ -53,9 +53,12 @@ export default class Main extends React.Component {
               </button>
             </li>
           ))}
+          <li>
+            <Link to={"/addNote"} className="Main__addNote">
+              Add Note
+            </Link>
+          </li>
         </ul>
-        {/* this doesn't have to work yet */}
-        <button type="button">New note</button>
       </div>
     );
   }

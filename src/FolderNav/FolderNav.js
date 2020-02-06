@@ -19,7 +19,10 @@ export default class FolderNav extends React.Component {
             </li>
           ))}
           <li>
-            <NavLink to={"/addFolder"} className="FolderNav__link">
+            <NavLink
+              to={"/addFolder"}
+              className="FolderNav__link FolderNav__addFolder"
+            >
               Add Folder
             </NavLink>
           </li>

@@ -1,21 +1,30 @@
 .Main ul {
-    list-style-type: none;
-    width: 100%;
+  list-style-type: none;
+  width: 100%;
 }
 
 .Main__li {
-    padding: 10px;
-    border: 1px solid black;
-    /* width: 400px; */
-    display: flex;
-    justify-content: space-between;
+  padding: 10px;
+  border: 1px solid black;
+  /* width: 400px; */
+  display: flex;
+  justify-content: space-between;
 }
 
 .Main__link {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 .Main button {
-    margin-left: 40px;
+  margin-left: 40px;
+}
+
+.Main__addNote {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  padding: 10px;
+  background-color: grey;
 }
