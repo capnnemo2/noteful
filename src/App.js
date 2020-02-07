@@ -85,16 +85,8 @@ export default class App extends React.Component {
   };
 
   addFolder = folder => {
-    console.log(folder);
     this.setState({ folders: [...this.state.folders, folder] });
-    console.log(this.state.folders);
   };
-
-  // addFolder = folder => {
-  //   this.setState(state => {
-  //     return { folders: [...state.folders, folder] };
-  //   });
-  // };
 
   render() {
     const value = {

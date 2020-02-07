@@ -42,8 +42,8 @@ export default class AddFolder extends React.Component {
         }
         return res.json();
       })
-      .then(() => {
-        this.context.addFolder(name);
+      .then(data => {
+        this.context.addFolder(data);
       })
       .catch(error => {
         console.error({ error });
