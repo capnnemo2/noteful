@@ -13,7 +13,11 @@ export default class FolderNav extends React.Component {
         <ul>
           {folders.map(folder => (
             <li key={folder.id}>
-              <NavLink to={`/folder/${folder.id}`} className="FolderNav__link">
+              <NavLink
+                to={`/folder/${folder.id}`}
+                className="FolderNav__link"
+                key={folder.id}
+              >
                 {folder.name}
               </NavLink>
             </li>
