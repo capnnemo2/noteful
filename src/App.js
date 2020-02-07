@@ -85,10 +85,11 @@ export default class App extends React.Component {
     this.setState({ notes: [...this.state.notes, note] });
   }
 
-  componentDidUpdate(prevState) {
-    if (prevState.notes !== this.state.notes) {
-      console.log("the state changed");
-    }
+  handleStateChange(value) {
+    // e.preventDefault();
+    const noteNote = this.state.notes;
+    noteNote.push(value);
+    this.setState({ notes: noteNote });
   }
 
   render() {
@@ -115,7 +116,12 @@ export default class App extends React.Component {
                 <Route path="/folder/:folderId" component={Folder} />
                 <Route path="/note/:noteId" component={Note} />
                 <Route path="/addFolder" component={AddFolder} />
-                <Route path="/addNote" component={AddNote} />
+                <Route
+                  path="/addNote"
+                  render={props => (
+                    <AddNote handleStateChange={this.handleStateChange} />
+                  )}
+                />
                 <Route component={NotFound} />
               </Switch>
             </main>
