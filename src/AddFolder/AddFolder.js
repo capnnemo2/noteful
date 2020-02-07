@@ -1,4 +1,5 @@
 import React from "react";
+import NotefulContext from "../NotefulContext";
 import ValidationError from "../ValidationError/ValidationError";
 
 export default class AddFolder extends React.Component {
@@ -11,6 +12,8 @@ export default class AddFolder extends React.Component {
       }
     };
   }
+
+  static contextType = NotefulContext;
 
   updateFolderName(name) {
     this.setState({ folderName: { value: name, touched: true } });
@@ -25,7 +28,8 @@ export default class AddFolder extends React.Component {
     }
   }
 
-  handleSubmit = name => {
+  handleSubmit = () => {
+    const name = this.state.folderName.value;
     const url = "http://localhost:9090/folders/";
     fetch(url, {
       method: "POST",
@@ -54,7 +58,7 @@ export default class AddFolder extends React.Component {
         className="AddFolder"
         onSubmit={e => {
           e.preventDefault();
-          this.handleSubmit(this.state.folderName.value);
+          this.handleSubmit();
         }}
       >
         <label htmlFor="name">New Folder Name: </label>

@@ -84,12 +84,17 @@ export default class App extends React.Component {
     this.setState({ notes: [...this.state.notes, note] });
   };
 
+  addFolder = folder => {
+    this.setState({ folders: [...this.state.folders, folder] });
+  };
+
   render() {
     const value = {
       notes: this.state.notes,
       folders: this.state.folders,
       deleteNote: this.handleDeleteNote,
-      addNote: this.addNote
+      addNote: this.addNote,
+      addFolder: this.addFolder
     };
     return (
       <NotefulContext.Provider value={value}>
@@ -109,7 +114,6 @@ export default class App extends React.Component {
                 <Route path="/note/:noteId" component={Note} />
                 <Route path="/addFolder" component={AddFolder} />
                 <Route path="/addNote" component={AddNote} />
-                )} />
                 <Route component={NotFound} />
               </Switch>
             </main>
