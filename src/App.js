@@ -81,22 +81,9 @@ export default class App extends React.Component {
       });
   };
 
-  addNote(note) {
+  addNote = note => {
     this.setState({ notes: [...this.state.notes, note] });
-  }
-
-  // handleStateChange(value) {
-  //   e.preventDefault();
-  //   const noteNote = this.state.notes;
-  //   noteNote.push(value);
-  //   this.setState({ notes: noteNote });
-  // }
-
-  componentDidUpdate(prevState) {
-    if (prevState.notes !== this.state.notes) {
-      console.log("the state changed");
-    }
-  }
+  };
 
   render() {
     const value = {

@@ -76,7 +76,6 @@ export default class AddNote extends React.Component {
       })
       .then(note => {
         this.context.addNote(note);
-        this.props.handleStateChange(note);
       })
       .catch(error => {
         console.error({ error });
@@ -84,12 +83,6 @@ export default class AddNote extends React.Component {
 
     this.props.history.push("/");
   };
-
-  componentDidUpdate(prevState) {
-    if (prevState.notes !== this.state.notes) {
-      console.log("the state changed");
-    }
-  }
 
   render() {
     const { folders = [] } = this.context;
