@@ -55,7 +55,6 @@ export default class App extends React.Component {
   handleDeleteNote = (id, cb) => {
     const noteId = id;
     const url = "http://localhost:9090/notes/";
-    console.log(noteId);
     fetch(url + `${noteId}`, {
       method: "DELETE",
       headers: {
