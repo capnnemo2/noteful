@@ -32,6 +32,36 @@ export default class App extends React.Component {
     });
   };
 
+  addFolder = folder => {
+    this.setState({ folders: [...this.state.folders, folder] });
+  };
+
+  addNote = note => {
+    this.setState({ notes: [...this.state.notes, note] });
+  };
+
+  updateFolder = newFolder => {
+    let folders = this.state.folders.map(f =>
+      f.id === newFolder.id ? newFolder : f
+    );
+    this.setState({ folders });
+  };
+
+  updateNote = newNote => {
+    let notes = this.state.notes.map(n => (n.id === newNote.id ? newNote : n));
+    this.setState({ notes });
+  };
+
+  deleteFolder = folderId => {
+    const newFolders = this.state.folders.filter(f => f.id !== folderId);
+    this.setState({ folders: newFolders });
+  };
+
+  deleteNote = noteId => {
+    const newNotes = this.state.notes.filter(n => n.id !== noteId);
+    this.setState({ notes: newNotes });
+  };
+
   componentDidMount() {
     fetch(config.API_ENDPOINT_FOLDERS, {
       method: "GET",
@@ -66,49 +96,16 @@ export default class App extends React.Component {
       .catch(error => this.setState({ error }));
   }
 
-  handleDeleteNote = (id, cb) => {
-    const noteId = id;
-    const url = "http://localhost:9090/notes/";
-    fetch(url + `${noteId}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json"
-      }
-    })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(res.status);
-        }
-        return res.json();
-      })
-      .then(() => {
-        this.setState(
-          {
-            notes: this.state.notes.filter(note => note.id !== noteId)
-          },
-          cb
-        );
-      })
-      .catch(error => {
-        console.error({ error });
-      });
-  };
-
-  addNote = note => {
-    this.setState({ notes: [...this.state.notes, note] });
-  };
-
-  addFolder = folder => {
-    this.setState({ folders: [...this.state.folders, folder] });
-  };
-
   render() {
     const value = {
-      notes: this.state.notes,
       folders: this.state.folders,
-      deleteNote: this.handleDeleteNote,
+      notes: this.state.notes,
+      addFolder: this.addFolder,
+      updateFolder: this.updateFolder,
+      deleteFolder: this.deleteFolder,
       addNote: this.addNote,
-      addFolder: this.addFolder
+      updateNote: this.updateNote,
+      deleteNote: this.handleDeleteNote
     };
     return (
       <NotefulContext.Provider value={value}>
