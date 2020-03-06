@@ -10,7 +10,9 @@ export default class Main extends React.Component {
   handleDelete = noteId => {
     fetch(config.API_ENDPOINT_NOTES + `/${noteId}`, {
       method: "DELETE",
-      headers: { "content-type": "application/json" }
+      headers: {
+        "content-type": "application/json"
+      }
     })
       .then(res => {
         if (!res.ok) {
@@ -21,6 +23,7 @@ export default class Main extends React.Component {
       })
       .then(data => {
         this.context.deleteNote(noteId);
+        console.log(this.context.notes);
       })
       .catch(error => {
         console.log(error);

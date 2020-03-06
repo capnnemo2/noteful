@@ -61,6 +61,8 @@ export default class App extends React.Component {
   deleteNote = noteId => {
     const newNotes = this.state.notes.filter(n => n.id !== noteId);
     this.setState({ notes: newNotes });
+    console.log(newNotes);
+    console.log(this.state.notes);
   };
 
   componentDidMount() {

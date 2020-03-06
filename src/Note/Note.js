@@ -22,7 +22,7 @@ export default class Note extends React.Component {
       })
       .then(data => {
         this.context.deleteNote(noteId);
-        this.props.history.push("/");
+        this.props.history.goBack();
         console.log(this.context.notes);
       })
       .catch(error => {
