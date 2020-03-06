@@ -9,6 +9,7 @@ import NotFound from "./NotFound/NotFound";
 import AddFolder from "./AddFolder/AddFolder";
 import AddNote from "./AddNote/AddNote";
 import NotefulContext from "./NotefulContext";
+import config from "./config";
 import "./App.css";
 
 export default class App extends React.Component {

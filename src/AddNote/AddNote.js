@@ -1,6 +1,7 @@
 import React from "react";
 import NotefulContext from "../NotefulContext";
 import ValidationError from "../ValidationError/ValidationError";
+import config from "../config";
 
 export default class AddNote extends React.Component {
   constructor(props) {
@@ -62,8 +63,7 @@ export default class AddNote extends React.Component {
     const name = this.state.noteName.value;
     const content = this.state.noteContent.value;
     const { folderId } = this.state;
-    const url = "http://localhost:9090/notes/";
-    fetch(url, {
+    fetch(config.API_ENDPOINT_NOTES, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ name, content, folderId })
