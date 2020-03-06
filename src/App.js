@@ -14,42 +14,56 @@ import "./App.css";
 export default class App extends React.Component {
   state = {
     folders: [],
-    notes: []
+    notes: [],
+    error: null
+  };
+
+  setFolders = folders => {
+    this.setState({
+      folders,
+      error: null
+    });
+  };
+
+  setNotes = notes => {
+    this.setState({
+      notes,
+      error: null
+    });
   };
 
   componentDidMount() {
-    const url = "http://localhost:9090/";
-    fetch(url + "folders")
+    fetch(config.API_ENDPOINT_FOLDERS, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json"
+        // Authorization: `${config.API_KEY}`
+      }
+    })
       .then(res => {
         if (!res.ok) {
           throw new Error(res.status);
         }
         return res.json();
       })
-      .then(folders => {
-        this.setState({
-          folders
-        });
-      })
-      .catch(error => {
-        console.log({ error });
-      });
+      .then(this.setFolders)
+      .catch(error => this.setState({ error }));
 
-    fetch(url + "notes")
+    fetch(config.API_ENDPOINT_NOTES, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json"
+        // Authorization: `${config.API_KEY}`
+      }
+    })
       .then(res => {
         if (!res.ok) {
           throw new Error(res.status);
         }
         return res.json();
       })
-      .then(notes => {
-        this.setState({
-          notes
-        });
-      })
-      .catch(error => {
-        console.log({ error });
-      });
+      .then(this.setNotes)
+      .catch(error => this.setState({ error }));
   }
 
   handleDeleteNote = (id, cb) => {
