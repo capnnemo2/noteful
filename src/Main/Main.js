@@ -1,10 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NotefulContext from "../NotefulContext";
+import config from "../config";
 import "./Main.css";
 
 export default class Main extends React.Component {
   static contextType = NotefulContext;
+
+  handleDelete = noteId => {
+    fetch(config.API_ENDPOINT_NOTES + `/${noteId}`, {
+      method: "DELETE",
+      headers: { "content-type": "application/json" }
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw error;
+          });
+        }
+      })
+      .then(data => {
+        this.context.deleteNote(noteId);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   render() {
     const { notes = [] } = this.context;
@@ -20,8 +41,12 @@ export default class Main extends React.Component {
                 type="button"
                 onClick={e => {
                   e.preventDefault();
-                  this.context.deleteNote(note.id);
+                  this.handleDelete(note.id);
                 }}
+                // onClick={e => {
+                //   e.preventDefault();
+                //   this.context.deleteNote(note.id);
+                // }}
               >
                 Delete
               </button>

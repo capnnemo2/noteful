@@ -61,11 +61,8 @@ export default class AddNote extends React.Component {
 
   handleSubmit = () => {
     const note_name = this.state.noteName.value;
-    console.log(note_name);
     const content = this.state.noteContent.value;
-    console.log(content);
     const folder_id = Number(this.state.folderId);
-    console.log(folder_id);
     fetch(config.API_ENDPOINT_NOTES, {
       method: "POST",
       headers: { "content-type": "application/json" },
