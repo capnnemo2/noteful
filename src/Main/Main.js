@@ -14,7 +14,7 @@ export default class Main extends React.Component {
           {notes.map(note => (
             <li key={note.id} className="Main__li">
               <Link to={`/note/${note.id}`} className="Main__link">
-                {note.name}
+                {note.note_name}
               </Link>
               <button
                 type="button"

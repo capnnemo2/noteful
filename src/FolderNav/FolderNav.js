@@ -18,7 +18,7 @@ export default class FolderNav extends React.Component {
                 className="FolderNav__link"
                 key={folder.id}
               >
-                {folder.name}
+                {folder.folder_name}
               </NavLink>
             </li>
           ))}
