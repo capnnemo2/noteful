@@ -30,11 +30,11 @@ export default class AddFolder extends React.Component {
   }
 
   handleSubmit = () => {
-    const name = this.state.folderName.value;
+    const folder_name = this.state.folderName.value;
     fetch(config.API_ENDPOINT_FOLDERS, {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ name })
+      body: JSON.stringify({ folder_name })
     })
       .then(res => {
         if (!res.ok) {
