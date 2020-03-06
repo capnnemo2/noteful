@@ -61,12 +61,15 @@ export default class AddNote extends React.Component {
 
   handleSubmit = () => {
     const note_name = this.state.noteName.value;
+    console.log(note_name);
     const content = this.state.noteContent.value;
-    const { folderId } = this.state;
+    console.log(content);
+    const folder_id = Number(this.state.folderId);
+    console.log(folder_id);
     fetch(config.API_ENDPOINT_NOTES, {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ note_name, content, folderId })
+      body: JSON.stringify({ note_name, content, folder_id })
     })
       .then(res => {
         if (!res.ok) {
@@ -116,7 +119,7 @@ export default class AddNote extends React.Component {
           <option value="">Select Folder...</option>
           {folders.map(folder => (
             <option key={folder.id} value={folder.id}>
-              {folder.name}
+              {folder.folder_name}
             </option>
           ))}
         </select>

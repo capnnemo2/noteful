@@ -41,22 +41,22 @@ export default class App extends React.Component {
     this.setState({ notes: [...this.state.notes, note] });
   };
 
-  updateFolder = newFolder => {
-    let folders = this.state.folders.map(f =>
-      f.id === newFolder.id ? newFolder : f
-    );
-    this.setState({ folders });
-  };
+  // updateFolder = newFolder => {
+  //   let folders = this.state.folders.map(f =>
+  //     f.id === newFolder.id ? newFolder : f
+  //   );
+  //   this.setState({ folders });
+  // };
 
-  updateNote = newNote => {
-    let notes = this.state.notes.map(n => (n.id === newNote.id ? newNote : n));
-    this.setState({ notes });
-  };
+  // updateNote = newNote => {
+  //   let notes = this.state.notes.map(n => (n.id === newNote.id ? newNote : n));
+  //   this.setState({ notes });
+  // };
 
-  deleteFolder = folderId => {
-    const newFolders = this.state.folders.filter(f => f.id !== folderId);
-    this.setState({ folders: newFolders });
-  };
+  // deleteFolder = folderId => {
+  //   const newFolders = this.state.folders.filter(f => f.id !== folderId);
+  //   this.setState({ folders: newFolders });
+  // };
 
   deleteNote = noteId => {
     const newNotes = this.state.notes.filter(n => n.id !== noteId);
@@ -106,7 +106,7 @@ export default class App extends React.Component {
       deleteFolder: this.deleteFolder,
       addNote: this.addNote,
       updateNote: this.updateNote,
-      deleteNote: this.handleDeleteNote
+      deleteNote: this.deleteNote
     };
     return (
       <NotefulContext.Provider value={value}>
