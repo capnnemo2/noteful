@@ -43,10 +43,6 @@ export default class Main extends React.Component {
                   e.preventDefault();
                   this.handleDelete(note.id);
                 }}
-                // onClick={e => {
-                //   e.preventDefault();
-                //   this.context.deleteNote(note.id);
-                // }}
               >
                 Delete
               </button>
