@@ -7,14 +7,17 @@ export default class Note extends React.Component {
 
   render() {
     const { notes = [], folders = [] } = this.context;
-    const { noteId } = this.props.match.params;
+    console.log(notes);
+    const noteId = this.props.match.params.note_id;
+    console.log(`note id: ${noteId}`);
 
-    const note = notes.find(note => note.id === noteId);
+    const note = notes.find(n => n.id === noteId);
+    console.log(note);
     const noteFolder = note ? folders.find(f => f.id === note.folderId) : {};
     return note ? (
       <div className="Note wrapper">
         <div className="Note__nav">
-          <h3>{noteFolder.name}</h3>
+          <h3>{noteFolder.folder_name}</h3>
           <button type="button" onClick={() => this.props.history.goBack()}>
             Back
           </button>

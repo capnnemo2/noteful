@@ -8,20 +8,23 @@ export default class Folder extends React.Component {
 
   render() {
     const { folders = [] } = this.context;
-    const folder = folders.find(f => f.id === this.props.match.params.folderId);
+    const folder = folders.find(
+      f => f.id === Number(this.props.match.params.folder_id)
+    );
 
     const { notes = [] } = this.context;
     const notesInFolder = notes.filter(
-      n => n.folderId === this.props.match.params.folderId
+      n => n.folder_id === Number(this.props.match.params.folder_id)
     );
+
     return folder ? (
       <div className="Folder">
-        <h2>{folder.name}</h2>
+        <h2>{folder.folder_name}</h2>
         <ul>
           {notesInFolder.map(note => (
             <li key={note.id} className="Folder__note_link">
               <Link to={`/note/${note.id}`} className="Folder__link">
-                {note.name}
+                {note.note_name}
               </Link>
               <button
                 type="button"

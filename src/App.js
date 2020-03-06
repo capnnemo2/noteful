@@ -122,8 +122,8 @@ export default class App extends React.Component {
             <main>
               <Switch>
                 <Route exact path="/" component={Main} />
-                <Route path="/folder/:folderId" component={Folder} />
-                <Route path="/note/:noteId" component={Note} />
+                <Route path="/folder/:folder_id" component={Folder} />
+                <Route path="/note/:note_id" component={Note} />
                 <Route path="/addFolder" component={AddFolder} />
                 <Route path="/addNote" component={AddNote} />
                 <Route component={NotFound} />
