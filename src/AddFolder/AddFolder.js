@@ -1,6 +1,7 @@
 import React from "react";
 import NotefulContext from "../NotefulContext";
 import ValidationError from "../ValidationError/ValidationError";
+import config from "../config";
 
 export default class AddFolder extends React.Component {
   constructor(props) {
@@ -30,8 +31,7 @@ export default class AddFolder extends React.Component {
 
   handleSubmit = () => {
     const name = this.state.folderName.value;
-    const url = "http://localhost:9090/folders/";
-    fetch(url, {
+    fetch(config.API_ENDPOINT_FOLDERS, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ name })
