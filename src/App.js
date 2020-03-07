@@ -59,7 +59,9 @@ export default class App extends React.Component {
   // };
 
   deleteNote = noteId => {
-    const newNotes = this.state.notes.filter(n => n.id !== noteId);
+    const newNotes = this.state.notes.filter(
+      n => Number(n.id) !== Number(noteId)
+    );
     this.setState({ notes: newNotes });
     console.log(newNotes);
     console.log(this.state.notes);
@@ -110,6 +112,7 @@ export default class App extends React.Component {
       updateNote: this.updateNote,
       deleteNote: this.deleteNote
     };
+
     return (
       <NotefulContext.Provider value={value}>
         <div className="App">
