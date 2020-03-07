@@ -11,6 +11,7 @@ import AddNote from "./AddNote/AddNote";
 import NotefulContext from "./NotefulContext";
 import config from "./config";
 import "./App.css";
+import DeleteFolder from "./DeleteFolder/DeleteFolder";
 
 export default class App extends React.Component {
   state = {
@@ -53,10 +54,12 @@ export default class App extends React.Component {
   //   this.setState({ notes });
   // };
 
-  // deleteFolder = folderId => {
-  //   const newFolders = this.state.folders.filter(f => f.id !== folderId);
-  //   this.setState({ folders: newFolders });
-  // };
+  deleteFolder = folderId => {
+    const newFolders = this.state.folders.filter(
+      f => Number(f.id) !== Number(folderId)
+    );
+    this.setState({ folders: newFolders });
+  };
 
   deleteNote = noteId => {
     const newNotes = this.state.notes.filter(
@@ -129,6 +132,7 @@ export default class App extends React.Component {
                 <Route path="/note/:note_id" component={Note} />
                 <Route path="/addFolder" component={AddFolder} />
                 <Route path="/addNote" component={AddNote} />
+                <Route path="/deleteFolder" component={DeleteFolder} />
                 <Route component={NotFound} />
               </Switch>
             </main>

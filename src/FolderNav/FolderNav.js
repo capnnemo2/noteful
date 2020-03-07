@@ -30,6 +30,14 @@ export default class FolderNav extends React.Component {
               Add Folder
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to={"/deleteFolder"}
+              className="FolderNav__link FolderNav__deleteFolder"
+            >
+              Delete a Folder
+            </NavLink>
+          </li>
         </ul>
       </div>
     );

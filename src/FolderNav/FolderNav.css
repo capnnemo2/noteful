@@ -15,6 +15,7 @@
   background-color: lightgrey;
 }
 
-.FolderNav__addFolder {
+.FolderNav__addFolder,
+.FolderNav__deleteFolder {
   background-color: grey;
 }
