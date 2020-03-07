@@ -63,8 +63,6 @@ export default class App extends React.Component {
       n => Number(n.id) !== Number(noteId)
     );
     this.setState({ notes: newNotes });
-    console.log(newNotes);
-    console.log(this.state.notes);
   };
 
   componentDidMount() {
