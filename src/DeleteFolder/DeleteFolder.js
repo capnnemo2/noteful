@@ -1,6 +1,5 @@
 import React from "react";
 import NotefulContext from "../NotefulContext";
-import ValidationError from "../ValidationError/ValidationError";
 import config from "../config";
 
 export default class DeleteFolder extends React.Component {
@@ -25,6 +24,23 @@ export default class DeleteFolder extends React.Component {
     }
   }
 
+  confirmDelete = () => {
+    let txt;
+    if (
+      window.confirm(
+        "Deleting this folder will also delete any notes it may contain. Do you wish to continue?"
+      )
+    ) {
+      txt = "Deleted";
+    } else {
+      txt = "Not deleted";
+    }
+    document.getElementById("txt").innerHTML = txt;
+  };
+
+  // need to do something if there are notes in the folder that you are trying to delete
+  // say 'no, you can't delete, there notes in this folder'?
+  // or say, 'if you delete this folder you will also delete the notes contained within also'?
   handleSubmit = () => {
     const folder_id = Number(this.state.folder_id);
     fetch(config.API_ENDPOINT_FOLDERS + `/${folder_id}`, {
@@ -55,7 +71,7 @@ export default class DeleteFolder extends React.Component {
       <form
         onSubmit={e => {
           e.preventDefault();
-          this.handleSubmit();
+          this.confirmDelete();
         }}
       >
         <label htmlFor="folder">Choose a folder:</label>
@@ -78,6 +94,7 @@ export default class DeleteFolder extends React.Component {
         >
           Delete
         </button>
+        <div id="txt"></div>
       </form>
     );
   }
