@@ -61,6 +61,14 @@ export default class App extends React.Component {
     this.setState({ folders: newFolders });
   };
 
+  deleteFolderNotes = folder_id => {
+    console.log("this ran");
+    const newNotes = this.state.notes.filter(
+      n => Number(n.folder_id) !== Number(folder_id)
+    );
+    this.setState({ notes: newNotes });
+  };
+
   deleteNote = noteId => {
     const newNotes = this.state.notes.filter(
       n => Number(n.id) !== Number(noteId)
@@ -109,6 +117,7 @@ export default class App extends React.Component {
       addFolder: this.addFolder,
       updateFolder: this.updateFolder,
       deleteFolder: this.deleteFolder,
+      deleteFolderNotes: this.deleteFolderNotes,
       addNote: this.addNote,
       updateNote: this.updateNote,
       deleteNote: this.deleteNote

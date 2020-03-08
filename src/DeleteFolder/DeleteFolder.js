@@ -7,7 +7,8 @@ export default class DeleteFolder extends React.Component {
     super(props);
     this.state = {
       folder_id: "",
-      folders: []
+      folders: [],
+      notes: []
     };
   }
 
@@ -55,6 +56,7 @@ export default class DeleteFolder extends React.Component {
       .then(data => {
         this.context.deleteFolder(folder_id);
         this.props.history.push("/");
+        this.context.deleteFolderNotes(folder_id);
       })
       .catch(error => {
         console.log(error);
