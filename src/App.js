@@ -8,6 +8,7 @@ import Note from "./Note/Note";
 import NotFound from "./NotFound/NotFound";
 import AddFolder from "./AddFolder/AddFolder";
 import AddNote from "./AddNote/AddNote";
+import EditNote from "./EditNote/EditNote";
 import NotefulContext from "./NotefulContext";
 import config from "./config";
 import "./App.css";
@@ -140,6 +141,7 @@ export default class App extends React.Component {
                 <Route path="/note/:note_id" component={Note} />
                 <Route path="/addFolder" component={AddFolder} />
                 <Route path="/addNote" component={AddNote} />
+                <Route path="/editNote" component={EditNote} />
                 <Route path="/deleteFolder" component={DeleteFolder} />
                 <Route component={NotFound} />
               </Switch>

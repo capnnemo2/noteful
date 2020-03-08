@@ -43,7 +43,6 @@ export default class Main extends React.Component {
               <div className="Main__btn_container">
                 <button
                   type="button"
-                  className="Main__editBtn"
                   onClick={e => {
                     e.preventDefault();
                     this.handleUpdate(note.id);
@@ -53,7 +52,6 @@ export default class Main extends React.Component {
                 </button>
                 <button
                   type="button"
-                  className="Main__delBtn"
                   onClick={e => {
                     e.preventDefault();
                     this.handleDelete(note.id);
