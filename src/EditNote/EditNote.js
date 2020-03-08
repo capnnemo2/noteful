@@ -60,15 +60,13 @@ export default class EditNote extends React.Component {
         this.setState({
           folders: resData
         });
-        // new Promise(
-        //   this.displayFolderName(this.state.folders, this.state.folder_id)
-        // );
       })
       .catch(error => {
         this.setState({ error });
       });
 
     Promise.all([fetchNotes, fetchFolder]).then(
+      //   this.displayFolderName(this.state.folders, this.state.folder_id),
       console.log("folder_id:", this.state.folder_id),
       console.log("promise all ran"),
       console.log("folders:", this.state.folders)
