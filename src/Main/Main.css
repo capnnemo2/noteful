@@ -16,10 +16,6 @@
   color: black;
 }
 
-.Main button {
-  margin-left: 40px;
-}
-
 .Main__addNote {
   display: inline-block;
   text-decoration: none;

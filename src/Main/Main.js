@@ -40,15 +40,28 @@ export default class Main extends React.Component {
               <Link to={`/note/${note.id}`} className="Main__link">
                 {note.note_name}
               </Link>
-              <button
-                type="button"
-                onClick={e => {
-                  e.preventDefault();
-                  this.handleDelete(note.id);
-                }}
-              >
-                Delete
-              </button>
+              <div className="Main__btn_container">
+                <button
+                  type="button"
+                  className="Main__editBtn"
+                  onClick={e => {
+                    e.preventDefault();
+                    this.handleUpdate(note.id);
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  className="Main__delBtn"
+                  onClick={e => {
+                    e.preventDefault();
+                    this.handleDelete(note.id);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
             </li>
           ))}
           <li>
