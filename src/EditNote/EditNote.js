@@ -11,6 +11,7 @@ export default class EditNote extends React.Component {
     note_name: "",
     folder_id: "",
     content: "",
+    folder_name: "",
     folders: []
   };
 
@@ -41,9 +42,41 @@ export default class EditNote extends React.Component {
         console.error(error);
         this.setState({ error });
       });
+
+    fetch(config.API_ENDPOINT_FOLDERS, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(resData => {
+        this.setState({
+          folders: resData
+        });
+      })
+      .then(this.displayFolderName)
+      .catch(error => {
+        this.setState({ error });
+      });
   }
 
-  handelChangeName = e => {
+  displayFolderName = () => {
+    const folderName = this.state.folders.find(
+      f => f.id === this.state.folder_id
+    );
+    this.setState({
+      folder_name: folderName.folder_name
+    });
+    console.log("this ran");
+  };
+
+  handleChangeName = e => {
     this.setState({ note_name: e.target.value });
   };
 
@@ -60,7 +93,8 @@ export default class EditNote extends React.Component {
   };
 
   render() {
-    const { note_name, folder_id, content, folders } = this.state;
+    const { note_name, folder_id, content } = this.state;
+    const { folders = [] } = this.state;
     return (
       <section className="EditNoteForm">
         <h2>Edit Note</h2>
@@ -79,7 +113,7 @@ export default class EditNote extends React.Component {
           <div>
             <label htmlFor="folder">Folder:</label>
             <select name="folder" onChange={this.handleChangeFolder} required>
-              <option value={folder_id}>{folder_id.folder_name}</option>
+              <option value={folder_id}>{this.state.folder_name}</option>
               {folders.map(folder => (
                 <option key={folder.id} value={folder.id}>
                   {folder.folder_name}
