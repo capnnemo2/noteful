@@ -73,7 +73,6 @@ export default class EditNote extends React.Component {
     this.setState({
       folder_name: folderName.folder_name
     });
-    console.log("this ran");
   };
 
   handleChangeName = e => {
