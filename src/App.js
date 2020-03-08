@@ -62,7 +62,6 @@ export default class App extends React.Component {
   };
 
   deleteFolderNotes = folder_id => {
-    console.log("this ran");
     const newNotes = this.state.notes.filter(
       n => Number(n.folder_id) !== Number(folder_id)
     );
