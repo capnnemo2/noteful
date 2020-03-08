@@ -15,7 +15,8 @@ export default class EditNote extends React.Component {
   };
 
   componentDidMount() {
-    const { note_id } = this.props.match.params;
+    //   note_id is not working in the GET request
+    const note_id = Number(this.props.match.params.note_id);
     fetch(config.API_ENDPOINT_NOTES + `/${note_id}`, {
       method: "GET",
       headers: {
@@ -63,7 +64,6 @@ export default class EditNote extends React.Component {
           <div>
             <label htmlFor="folder">Folder:</label>
             <select name="folder" onChange={this.handleChangeFolder} required>
-              {/* this first option should display the folder the note is already in */}
               <option value={folder_id}>{folder_id.folder_name}</option>
               {folder_id.localeCompare(folder => (
                 <option key={folder.id} value={folder.id}>
