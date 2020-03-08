@@ -59,8 +59,9 @@ export default class EditNote extends React.Component {
         this.setState({
           folders: resData
         });
+        new Promise(this.displayFolderName);
       })
-      .then(this.displayFolderName)
+      //   .then(this.displayFolderName)
       .catch(error => {
         this.setState({ error });
       });
@@ -70,6 +71,7 @@ export default class EditNote extends React.Component {
     const folderName = this.state.folders.find(
       f => f.id === this.state.folder_id
     );
+    console.log(folderName.folder_name);
     this.setState({
       folder_name: folderName.folder_name
     });
