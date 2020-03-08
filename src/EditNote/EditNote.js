@@ -17,61 +17,79 @@ export default class EditNote extends React.Component {
 
   componentDidMount() {
     const note_id = Number(this.props.match.params.note_id);
+    // const promises = [];
     let fetchNotes = fetch(config.API_ENDPOINT_NOTES + `/${note_id}`, {
       method: "GET",
       headers: {
         //   do i need this header?
         "content-type": "application/json"
       }
-    })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(res.status);
-        }
-        return res.json();
-      })
-      .then(resData => {
-        this.setState({
-          id: resData.id,
-          note_name: resData.note_name,
-          folder_id: resData.folder_id,
-          content: resData.content
-        });
-        console.log(this.state.folder_id);
-      })
-      .catch(error => {
-        console.error(error);
-        this.setState({ error });
-      });
+    });
+    //   .then(res => {
+    //     if (!res.ok) {
+    //       throw new Error(res.status);
+    //     }
+    //     return res.json();
+    //   })
+    //   .then(resData => {
+    //     const notePromise = this.setState({
+    //       id: resData.id,
+    //       note_name: resData.note_name,
+    //       folder_id: resData.folder_id,
+    //       content: resData.content
+    //     });
+    //     promises.push(notePromise);
+    //     console.log(this.state.folder_id);
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //     this.setState({ error });
+    //   });
 
     let fetchFolder = fetch(config.API_ENDPOINT_FOLDERS, {
       method: "GET",
       headers: {
         "content-type": "application/json"
       }
-    })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(res.status);
-        }
-        return res.json();
-      })
-      .then(resData => {
-        this.setState({
-          folders: resData
-        });
-      })
-      .catch(error => {
-        this.setState({ error });
-      });
-
-    Promise.all([fetchNotes, fetchFolder]).then(values => {
-      //   this.displayFolderName(this.state.folders, this.state.folder_id),
-      console.log(values);
-      // console.log("folder_id:", this.state.folder_id),
-      // console.log("promise all ran"),
-      // console.log("folders:", this.state.folders);
     });
+    //   .then(res => {
+    //     if (!res.ok) {
+    //       throw new Error(res.status);
+    //     }
+    //     return res.json();
+    //   })
+    //   .then(resData => {
+    //     this.setState({
+    //       folders: resData
+    //     });
+    //   })
+    //   .catch(error => {
+    //     this.setState({ error });
+    //   });
+
+    Promise.all([fetchNotes, fetchFolder]).then(result => {
+      result[0]
+        .clone()
+        .json()
+        .then(data =>
+          this.setState({
+            id: data.id,
+            note_name: data.note_name,
+            folder_id: data.folder_id,
+            content: data.content
+          })
+        );
+    });
+
+    Promise.all([fetchNotes, fetchFolder])
+      .then(result => {
+        result[1].json().then(data =>
+          this.setState({
+            folders: data
+          })
+        );
+      })
+      .then(this.displayFolderName(this.state.folders, this.state.folder_id));
   }
 
   displayFolderName(folders, folder_id) {
