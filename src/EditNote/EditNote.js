@@ -59,7 +59,9 @@ export default class EditNote extends React.Component {
         this.setState({
           folders: resData
         });
-        new Promise(this.displayFolderName);
+        new Promise(
+          this.displayFolderName(this.state.folders, this.state.folder_id)
+        );
       })
       //   .then(this.displayFolderName)
       .catch(error => {
@@ -67,15 +69,16 @@ export default class EditNote extends React.Component {
       });
   }
 
-  displayFolderName = () => {
-    const folderName = this.state.folders.find(
-      f => f.id === this.state.folder_id
-    );
-    console.log(folderName.folder_name);
+  displayFolderName(folders, folder_id) {
+    console.log("this ran");
+    console.log(folders);
+    console.log(folder_id);
+    const folderName = folders.find(f => f.id === folder_id);
+    console.log(folderName);
     this.setState({
       folder_name: folderName.folder_name
     });
-  };
+  }
 
   handleChangeName = e => {
     this.setState({ note_name: e.target.value });
