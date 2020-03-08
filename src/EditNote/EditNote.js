@@ -81,15 +81,15 @@ export default class EditNote extends React.Component {
         );
     });
 
-    Promise.all([fetchNotes, fetchFolder])
-      .then(result => {
-        result[1].json().then(data =>
-          this.setState({
-            folders: data
-          })
-        );
-      })
-      .then(this.displayFolderName(this.state.folders, this.state.folder_id));
+    // Promise.all([fetchNotes, fetchFolder])
+    //   .then(result => {
+    //     result[1].json().then(data =>
+    //       this.setState({
+    //         folders: data
+    //       })
+    //     );
+    //   })
+    //   .then(this.displayFolderName(this.state.folders, this.state.folder_id));
   }
 
   displayFolderName(folders, folder_id) {
