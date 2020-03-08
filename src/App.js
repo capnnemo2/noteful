@@ -141,7 +141,7 @@ export default class App extends React.Component {
                 <Route path="/note/:note_id" component={Note} />
                 <Route path="/addFolder" component={AddFolder} />
                 <Route path="/addNote" component={AddNote} />
-                <Route path="/editNote" component={EditNote} />
+                <Route path="/editNote/:note_id" component={EditNote} />
                 <Route path="/deleteFolder" component={DeleteFolder} />
                 <Route component={NotFound} />
               </Switch>

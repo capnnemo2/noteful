@@ -15,7 +15,6 @@ export default class EditNote extends React.Component {
   };
 
   componentDidMount() {
-    //   note_id is not working in the GET request
     const note_id = Number(this.props.match.params.note_id);
     fetch(config.API_ENDPOINT_NOTES + `/${note_id}`, {
       method: "GET",
@@ -44,8 +43,24 @@ export default class EditNote extends React.Component {
       });
   }
 
+  handelChangeName = e => {
+    this.setState({ note_name: e.target.value });
+  };
+
+  handleChangeFolder = e => {
+    this.setState({ folder_id: e.target.value });
+  };
+
+  handleChangeContent = e => {
+    this.setState({ content: e.target.value });
+  };
+
+  handleClickCancel = () => {
+    this.props.history.goBack();
+  };
+
   render() {
-    const { note_name, folder_id, content } = this.state;
+    const { note_name, folder_id, content, folders } = this.state;
     return (
       <section className="EditNoteForm">
         <h2>Edit Note</h2>
@@ -65,7 +80,7 @@ export default class EditNote extends React.Component {
             <label htmlFor="folder">Folder:</label>
             <select name="folder" onChange={this.handleChangeFolder} required>
               <option value={folder_id}>{folder_id.folder_name}</option>
-              {folder_id.localeCompare(folder => (
+              {folders.map(folder => (
                 <option key={folder.id} value={folder.id}>
                   {folder.folder_name}
                 </option>
@@ -83,6 +98,12 @@ export default class EditNote extends React.Component {
               onChange={this.handleChangeContent}
               required
             />
+          </div>
+          <div className="EditNote__buttons">
+            <button type="submit">Save Changes</button>
+            <button type="button" onClick={this.handleClickCancel}>
+              Cancel
+            </button>
           </div>
         </form>
       </section>
