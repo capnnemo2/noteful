@@ -17,7 +17,7 @@ export default class EditNote extends React.Component {
 
   componentDidMount() {
     const note_id = Number(this.props.match.params.note_id);
-    fetch(config.API_ENDPOINT_NOTES + `/${note_id}`, {
+    let fetchNotes = fetch(config.API_ENDPOINT_NOTES + `/${note_id}`, {
       method: "GET",
       headers: {
         //   do i need this header?
@@ -26,7 +26,7 @@ export default class EditNote extends React.Component {
     })
       .then(res => {
         if (!res.ok) {
-          return res.json().then(error => Promise.reject(error));
+          throw new Error(res.status);
         }
         return res.json();
       })
@@ -37,13 +37,14 @@ export default class EditNote extends React.Component {
           folder_id: resData.folder_id,
           content: resData.content
         });
+        console.log(this.state.folder_id);
       })
       .catch(error => {
         console.error(error);
         this.setState({ error });
       });
 
-    fetch(config.API_ENDPOINT_FOLDERS, {
+    let fetchFolder = fetch(config.API_ENDPOINT_FOLDERS, {
       method: "GET",
       headers: {
         "content-type": "application/json"
@@ -63,16 +64,21 @@ export default class EditNote extends React.Component {
           this.displayFolderName(this.state.folders, this.state.folder_id)
         );
       })
-      //   .then(this.displayFolderName)
       .catch(error => {
         this.setState({ error });
       });
+
+    Promise.all([fetchNotes, fetchFolder]).then(
+      console.log("folder_id:", this.state.folder_id),
+      console.log("promise all ran"),
+      console.log("folders:", this.state.folders)
+    );
   }
 
   displayFolderName(folders, folder_id) {
     console.log("this ran");
     console.log(folders);
-    console.log(folder_id);
+    console.log(`the folder id is: `, folder_id);
     const folderName = folders.find(f => f.id === folder_id);
     console.log(folderName);
     this.setState({
