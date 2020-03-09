@@ -25,26 +25,6 @@ export default class EditNote extends React.Component {
         "content-type": "application/json"
       }
     });
-    //   .then(res => {
-    //     if (!res.ok) {
-    //       throw new Error(res.status);
-    //     }
-    //     return res.json();
-    //   })
-    //   .then(resData => {
-    //     const notePromise = this.setState({
-    //       id: resData.id,
-    //       note_name: resData.note_name,
-    //       folder_id: resData.folder_id,
-    //       content: resData.content
-    //     });
-    //     promises.push(notePromise);
-    //     console.log(this.state.folder_id);
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //     this.setState({ error });
-    //   });
 
     let fetchFolder = fetch(config.API_ENDPOINT_FOLDERS, {
       method: "GET",
@@ -52,60 +32,37 @@ export default class EditNote extends React.Component {
         "content-type": "application/json"
       }
     });
-    //   .then(res => {
-    //     if (!res.ok) {
-    //       throw new Error(res.status);
-    //     }
-    //     return res.json();
-    //   })
-    //   .then(resData => {
-    //     this.setState({
-    //       folders: resData
-    //     });
-    //   })
-    //   .catch(error => {
-    //     this.setState({ error });
-    //   });
-
-    // Promise.all([fetchNotes, fetchFolder]).then(function(responses) {
-    //   return responses
-    //     .map(function(response) {
-    //       return response.json();
-    //     })
-    //     .then(function(data) {
-    //       console.log(data);
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error);
-    //     });
-    // });
 
     Promise.all([fetchNotes, fetchFolder]).then(result => {
       Promise.all(result.map(res => res.json()))
-        .then(this.displayFolderName(res[1], res[0].folder_id))
-        .then(res =>
+        .then(res => {
+          this.displayFolderName(res[1], res[0].folder_id);
           this.setState({
             id: res[0].id,
             note_name: res[0].note_name,
             folder_id: res[0].folder_id,
             content: res[0].content,
             folders: res[1]
-          })
-        );
-      // .then(this.displayFolderName(this.state.folders, this.state.folder_id));
+          });
+        })
+        .catch(error => {
+          this.setState({ error });
+        });
     });
   }
 
-  displayFolderName(folders, folder_id) {
+  displayFolderName = (folders, folder_id) => {
     console.log("this ran");
     console.log(folders);
     console.log(`the folder id is: `, folder_id);
-    const folderName = folders.find(f => f.id === folder_id);
+    const folderName = folders.find(
+      f => f.id.toString() === folder_id.toString()
+    );
     console.log(folderName);
     this.setState({
       folder_name: folderName.folder_name
     });
-  }
+  };
 
   handleChangeName = e => {
     this.setState({ note_name: e.target.value });
@@ -144,7 +101,10 @@ export default class EditNote extends React.Component {
           <div>
             <label htmlFor="folder">Folder:</label>
             <select name="folder" onChange={this.handleChangeFolder} required>
-              <option value={folder_id}>{this.state.folder_name}</option>
+              <option value={folder_id}>
+                {this.state.folder_name}(If you decide to change this, do not
+                change back to this exact choice)
+              </option>
               {folders.map(folder => (
                 <option key={folder.id} value={folder.id}>
                   {folder.folder_name}
