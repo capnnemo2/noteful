@@ -67,42 +67,32 @@ export default class EditNote extends React.Component {
     //     this.setState({ error });
     //   });
 
-    Promise.all([fetchNotes, fetchFolder]).then(result => {
-      Promise.all(result.map(res => res.json()))
-        .then(res =>
-          this.setState({
-            id: res[0].id,
-            note_name: res[0].note_name,
-            folder_id: res[0].folder_id,
-            content: res[0].content,
-            folders: res[1]
-          })
-        )
-        .then(this.displayFolderName(this.state.folders, this.state.folder_id));
-      // .then(this.displayFolderName(this.state.folders, this.state.folder_id));
-
-      // result[0]
-      // .clone()
-      // .json()
-      // .then(data =>
-      //   this.setState({
-      //     id: data.id,
-      //     note_name: data.note_name,
-      //     folder_id: data.folder_id,
-      //     content: data.content
-      //   })
-      // );
+    Promise.all([fetchNotes, fetchFolder]).then(function(responses) {
+      return responses
+        .map(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          console.log(data);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     });
 
-    // Promise.all([fetchNotes, fetchFolder])
-    //   .then(result => {
-    //     result[1].json().then(data =>
+    // Promise.all([fetchNotes, fetchFolder]).then(result => {
+    //   Promise.all(result.map(res => res.json()))
+    //     .then(res =>
     //       this.setState({
-    //         folders: data
+    //         id: res[0].id,
+    //         note_name: res[0].note_name,
+    //         folder_id: res[0].folder_id,
+    //         content: res[0].content,
+    //         folders: res[1]
     //       })
-    //     );
-    //   })
-    //   .then(this.displayFolderName(this.state.folders, this.state.folder_id));
+    //     )
+    //     .then(this.displayFolderName(this.state.folders, this.state.folder_id));
+    // });
   }
 
   displayFolderName(folders, folder_id) {
