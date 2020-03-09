@@ -81,15 +81,17 @@ export default class EditNote extends React.Component {
     // });
 
     Promise.all([fetchNotes, fetchFolder]).then(result => {
-      Promise.all(result.map(res => res.json())).then(res =>
-        this.setState({
-          id: res[0].id,
-          note_name: res[0].note_name,
-          folder_id: res[0].folder_id,
-          content: res[0].content,
-          folders: res[1]
-        })
-      );
+      Promise.all(result.map(res => res.json()))
+        .then(this.displayFolderName(res[1], res[0].folder_id))
+        .then(res =>
+          this.setState({
+            id: res[0].id,
+            note_name: res[0].note_name,
+            folder_id: res[0].folder_id,
+            content: res[0].content,
+            folders: res[1]
+          })
+        );
       // .then(this.displayFolderName(this.state.folders, this.state.folder_id));
     });
   }
