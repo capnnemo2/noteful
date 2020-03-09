@@ -52,13 +52,9 @@ export default class EditNote extends React.Component {
   }
 
   displayFolderName = (folders, folder_id) => {
-    console.log("this ran");
-    console.log(folders);
-    console.log(`the folder id is: `, folder_id);
     const folderName = folders.find(
       f => f.id.toString() === folder_id.toString()
     );
-    console.log(folderName);
     this.setState({
       folder_name: folderName.folder_name
     });
@@ -78,6 +74,46 @@ export default class EditNote extends React.Component {
 
   handleClickCancel = () => {
     this.props.history.goBack();
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const note_id = this.state.id;
+    const { id, note_name, folder_id, content } = this.state;
+    const newNote = { id, note_name, folder_id, content };
+    console.log(newNote);
+    fetch(config.API_ENDPOINT_NOTES + `/${note_id}`, {
+      method: "PATCH",
+      body: JSON.stringify(newNote),
+      headers: {
+        "content-type": "applicaion/json"
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw error;
+          });
+        }
+      })
+      .then(() => {
+        this.resetFields(newNote);
+        this.context.updateNote(newNote);
+        this.props.history.push("/");
+      })
+      .catch(error => {
+        console.error(error);
+        this.setState({ error });
+      });
+  };
+
+  resetFields = newFields => {
+    this.setState({
+      id: newFields.id || "",
+      note_name: newFields.note_name || "",
+      folder_id: newFields.note_name || "",
+      content: newFields.content || ""
+    });
   };
 
   render() {
