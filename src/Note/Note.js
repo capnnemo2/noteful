@@ -52,16 +52,6 @@ export default class Note extends React.Component {
           <h2>{note.note_name}</h2>
           <p>{note.content}</p>
           <Link to={`/editNote/${noteId}`}>Edit</Link>
-          {/* <button
-            type="button"
-            onClick={e => {
-              e.preventDefault();
-              // instead of this.handleUpdate, it should link to EditNote
-              this.handleUpdate(noteId);
-            }}
-          >
-            Edit
-          </button> */}
           <button
             type="button"
             onClick={e => {

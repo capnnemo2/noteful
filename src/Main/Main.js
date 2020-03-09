@@ -45,15 +45,6 @@ export default class Main extends React.Component {
                   type="button"
                   onClick={e => {
                     e.preventDefault();
-                    this.handleUpdate(note.id);
-                  }}
-                >
-                  Edit
-                </button>
-                <button
-                  type="button"
-                  onClick={e => {
-                    e.preventDefault();
                     this.handleDelete(note.id);
                   }}
                 >

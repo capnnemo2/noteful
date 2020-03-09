@@ -76,6 +76,7 @@ export default class EditNote extends React.Component {
     this.props.history.goBack();
   };
 
+  //   maybe the issue here is server-side? do the req.body and noteToUpdate need to include folder_id?
   handleSubmit = e => {
     e.preventDefault();
     const note_id = this.state.id;
