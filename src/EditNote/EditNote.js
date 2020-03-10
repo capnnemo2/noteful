@@ -96,6 +96,7 @@ export default class EditNote extends React.Component {
             throw error;
           });
         }
+        // do I need a return res.json() here?
       })
       .then(() => {
         this.resetFields(newNote);

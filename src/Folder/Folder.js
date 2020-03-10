@@ -20,6 +20,9 @@ export default class Folder extends React.Component {
     return folder ? (
       <div className="Folder">
         <h2>{folder.folder_name}</h2>
+        <Link to={`/editFolder/${this.props.match.params.folder_id}`}>
+          Edit Folder
+        </Link>
         <ul>
           {notesInFolder.map(note => (
             <li key={note.id} className="Folder__note_link">

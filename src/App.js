@@ -9,6 +9,7 @@ import NotFound from "./NotFound/NotFound";
 import AddFolder from "./AddFolder/AddFolder";
 import AddNote from "./AddNote/AddNote";
 import EditNote from "./EditNote/EditNote";
+import EditFolder from "./EditFolder/EditFolder";
 import NotefulContext from "./NotefulContext";
 import config from "./config";
 import "./App.css";
@@ -43,12 +44,12 @@ export default class App extends React.Component {
     this.setState({ notes: [...this.state.notes, note] });
   };
 
-  // updateFolder = newFolder => {
-  //   let folders = this.state.folders.map(f =>
-  //     f.id === newFolder.id ? newFolder : f
-  //   );
-  //   this.setState({ folders });
-  // };
+  updateFolder = newFolder => {
+    let folders = this.state.folders.map(f =>
+      Number(f.id) === Number(newFolder.id) ? newFolder : f
+    );
+    this.setState({ folders });
+  };
 
   updateNote = newNote => {
     let notes = this.state.notes.map(n => (n.id === newNote.id ? newNote : n));
@@ -142,6 +143,7 @@ export default class App extends React.Component {
                 <Route path="/addFolder" component={AddFolder} />
                 <Route path="/addNote" component={AddNote} />
                 <Route path="/editNote/:note_id" component={EditNote} />
+                <Route path="/editFolder/:folder_id" component={EditFolder} />
                 <Route path="/deleteFolder" component={DeleteFolder} />
                 <Route component={NotFound} />
               </Switch>
