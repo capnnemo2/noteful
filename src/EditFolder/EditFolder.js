@@ -48,6 +48,8 @@ export default class EditFolder extends React.Component {
     const { folder_id } = this.props.match.params;
     const { folder_name } = this.state;
     const newFolderName = { folder_name };
+    console.log(folder_id);
+    console.log(newFolderName);
     fetch(config.API_ENDPOINT_FOLDERS + `/${folder_id}`, {
       method: "PATCH",
       body: JSON.stringify(newFolderName),

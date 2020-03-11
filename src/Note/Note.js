@@ -51,7 +51,7 @@ export default class Note extends React.Component {
         <div className="Note__content">
           <h2>{note.note_name}</h2>
           <p>{note.content}</p>
-          <Link to={`/editNote/${noteId}`}>Edit</Link>
+          <Link to={`/editNote/${noteId}`}>Edit Note</Link>
           <button
             type="button"
             onClick={e => {
@@ -59,7 +59,7 @@ export default class Note extends React.Component {
               this.handleDelete(noteId);
             }}
           >
-            Delete
+            Delete Note
           </button>
         </div>
       </div>

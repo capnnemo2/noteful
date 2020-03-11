@@ -17,11 +17,9 @@ export default class EditNote extends React.Component {
 
   componentDidMount() {
     const note_id = Number(this.props.match.params.note_id);
-    // const promises = [];
     let fetchNotes = fetch(config.API_ENDPOINT_NOTES + `/${note_id}`, {
       method: "GET",
       headers: {
-        //   do i need this header?
         "content-type": "application/json"
       }
     });
@@ -76,18 +74,18 @@ export default class EditNote extends React.Component {
     this.props.history.goBack();
   };
 
-  //   maybe the issue here is server-side? do the req.body and noteToUpdate need to include folder_id?
   handleSubmit = e => {
     e.preventDefault();
-    const note_id = this.state.id;
-    const { id, note_name, folder_id, content } = this.state;
-    const newNote = { id, note_name, folder_id, content };
+    const { note_id } = this.props.match.params;
+    const { note_name, folder_id, content } = this.state;
+    const newNote = { note_name, folder_id, content };
     console.log(newNote);
+    console.log(note_id);
     fetch(config.API_ENDPOINT_NOTES + `/${note_id}`, {
       method: "PATCH",
       body: JSON.stringify(newNote),
       headers: {
-        "content-type": "applicaion/json"
+        "content-type": "application/json"
       }
     })
       .then(res => {
@@ -96,7 +94,6 @@ export default class EditNote extends React.Component {
             throw error;
           });
         }
-        // do I need a return res.json() here?
       })
       .then(() => {
         this.resetFields(newNote);
@@ -111,7 +108,6 @@ export default class EditNote extends React.Component {
 
   resetFields = newFields => {
     this.setState({
-      id: newFields.id || "",
       note_name: newFields.note_name || "",
       folder_id: newFields.note_name || "",
       content: newFields.content || ""
@@ -139,6 +135,7 @@ export default class EditNote extends React.Component {
           <div>
             <label htmlFor="folder">Folder:</label>
             <select name="folder" onChange={this.handleChangeFolder} required>
+              {/* this first option is not able to set state for some reason? */}
               <option value={folder_id}>
                 {this.state.folder_name}(If you decide to change this, do not
                 change back to this exact choice)

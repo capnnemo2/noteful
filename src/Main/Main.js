@@ -55,7 +55,7 @@ export default class Main extends React.Component {
           ))}
           <li>
             <Link to={"/addNote"} className="Main__addNote">
-              Add Note
+              Add a Note
             </Link>
           </li>
         </ul>
