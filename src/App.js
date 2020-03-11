@@ -50,15 +50,16 @@ export default class App extends React.Component {
       Number(f.id) === Number(newFolder.id) ? newFolder : f
     );
     this.setState({ folders });
+    console.log(folders);
   };
 
   updateNote = newNote => {
     console.log("updateNote ran");
-    let notes = this.state.notes.map(n =>
+    let newNotes = this.state.notes.map(n =>
       Number(n.id) === Number(newNote.id) ? newNote : n
     );
-    this.setState({ notes });
-    console.log(notes);
+    this.setState({ notes: newNotes });
+    console.log(newNotes);
   };
 
   deleteFolder = folderId => {
