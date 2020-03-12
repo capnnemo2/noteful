@@ -63,21 +63,13 @@ export default class EditFolder extends React.Component {
         }
       })
       .then(() => {
-        this.resetFields(newFolderName);
-        this.context.updateFolder(newFolderName);
+        this.context.updateFolder(newFolderName, folder_id);
         this.props.history.push("/");
       })
       .catch(error => {
         console.error(error);
         this.setState({ error });
       });
-  };
-
-  resetFields = newFields => {
-    this.setState({
-      id: newFields.id || "",
-      folder_name: newFields.folder_name || ""
-    });
   };
 
   handleClickCancel = () => {

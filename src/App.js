@@ -44,19 +44,19 @@ export default class App extends React.Component {
     this.setState({ notes: [...this.state.notes, note] });
   };
 
-  updateFolder = newFolder => {
+  updateFolder = (newFolder, folder_id) => {
     console.log("updateFolder ran");
     let folders = this.state.folders.map(f =>
-      Number(f.id) === Number(newFolder.id) ? newFolder : f
+      Number(f.id) === Number(folder_id) ? newFolder : f
     );
     this.setState({ folders });
     console.log(folders);
   };
 
-  updateNote = newNote => {
+  updateNote = (newNote, note_id) => {
     console.log("updateNote ran");
     let newNotes = this.state.notes.map(n =>
-      Number(n.id) === Number(newNote.id) ? newNote : n
+      Number(n.id) === Number(note_id) ? newNote : n
     );
     this.setState({ notes: newNotes });
     console.log(newNotes);
