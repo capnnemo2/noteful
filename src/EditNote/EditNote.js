@@ -68,7 +68,11 @@ export default class EditNote extends React.Component {
             <select name="folder_id" required>
               {this.context.folders.map(folder =>
                 folder.id === note.folder_id ? (
-                  <option key={folder.id} value={folder.id} selected>
+                  <option
+                    key={folder.id}
+                    value={folder.id}
+                    defaultValue={folder.folder_name}
+                  >
                     {folder.folder_name}
                   </option>
                 ) : (
